@@ -4,17 +4,18 @@
       <v-toolbar-title>
         <h1 class="pointer headline">
           <v-icon>fas fa-mobile-alt</v-icon>
-          Private Blog
+          Vending machine app
         </h1>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn v-if="user.isloggedIn" to="/add-new-entry" text>Add new Entry</v-btn>
+        <!-- <v-btn v-if="user.isloggedIn" to="/add-new-entry" text>Add new Entry</v-btn> -->
         <v-btn v-if="!user.isloggedIn" to="/register" text>Registration</v-btn>
         <v-btn v-if="!user.isloggedIn" to="/login" text>Sign in</v-btn>
         <v-btn v-if="user.isloggedIn" text
-          >Logged in as: {{ user.isloggedIn && user.email }}</v-btn
-        >
+          >Logged in as: {{ user.isloggedIn && user.email }} </v-btn>
+        <v-btn v-if="user.isloggedIn" text
+          >Role: {{ user.roles }} </v-btn>
         <v-btn v-if="user.isloggedIn" text @click="logout">Logout </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -25,7 +26,7 @@
       </v-container>
       <Snackbar />
     </v-main>
-    <v-footer app color="primary" dark> All rights reserved 2021 </v-footer>
+    <v-footer app color="primary" dark> All rights reserved 2022 </v-footer>
   </v-app>
 </template>
 

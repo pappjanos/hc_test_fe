@@ -1,6 +1,10 @@
 import userService from "../../api/services/userService";
 import dummyService from "../../api/services/dummyService";
 import blogService from "../../api/services/blogService";
+import productService from "../../api/services/productService";
+import buyService from "../../api/services/buyService";
+import depositService from "../../api/services/depositService";
+
 import { parse } from "@/util/jwt";
 import router from "../../router";
 
@@ -15,27 +19,39 @@ function setMessage(context, message, color = "red") {
   );
 }
 
-export const actions = {
-  setEmail(context, to) {
-    context.commit("SET_EMAIL", to);
-  },
+function setAuthtokens(token) {
+  // call setAuthToken for all apis here
+  dummyService.setAuthToken(token);
+  blogService.setAuthToken(token);
+  productService.setAuthToken(token);
+  buyService.setAuthToken(token);
+  depositService.setAuthToken(token);
+}
 
+function clearAuthTokens() {
+  // remove auth token in case of logging out
+  dummyService.removeAuthToken();
+  blogService.removeAuthToken();
+  productService.removeAuthToken();
+  buyService.removeAuthToken();
+  depositService.removeAuthToken();
+}
+
+export const actions = {
   async login(context, { email, password }) {
     try {
       const response = await userService.login({ email, password });
-      localStorage.setItem("token", response.data.token);
       const tokenPayload = parse(response.data.token);
 
       context.commit("SET_USER", {
         email: tokenPayload.user.email,
         isloggedIn: true,
-        roles: tokenPayload.user.roles,
+        roles: tokenPayload.user.role,
         id: tokenPayload.user.id,
+        token: response.data.token
       });
 
-      // call setAuthToken for all apis here
-      dummyService.setAuthToken(response.data.token);
-      blogService.setAuthToken(response.data.token);
+      setAuthtokens(response.data.token)
 
       setMessage(context, response.data.message, "green");
       router.push({ name: "Home" }).catch(()=>{});
@@ -47,15 +63,17 @@ export const actions = {
   reloadUserFromLocalStorage(context) {
     if (localStorage.getItem("user")) {
       context.commit("RELOAD_USER_FROM_LOCAL_STORAGE")
+      setAuthtokens(JSON.parse(localStorage.getItem("user")).token)
     } else {
       context.dispatch('logout')
     }
   },
 
-  async register(context, { email, password }) {
+  async register(context, { email, password, role }) {
     const user = {
       email,
       password,
+      role
     };
     try {
       const response = await userService.register(user);
@@ -67,7 +85,7 @@ export const actions = {
   },
 
   async logout(context) {
-    localStorage.clear("token");
+    clearAuthTokens()
     context.commit("LOGOUT_USER");
     router.push({ name: "Home" }).catch(()=>{});
   },

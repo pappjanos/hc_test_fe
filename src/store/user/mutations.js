@@ -1,8 +1,4 @@
 export const mutations = {
-  SET_EMAIL(state, to) {
-    state.user.email = to;
-  },
-
   SET_USER(state, to) {
     state.user = to;
     localStorage.setItem("user",JSON.stringify(to))
@@ -14,6 +10,7 @@ export const mutations = {
       isLoggedIn: false,
       roles: null,
       id: null,
+      token: null,
     };
   },
   RELOAD_USER_FROM_LOCAL_STORAGE(state) {

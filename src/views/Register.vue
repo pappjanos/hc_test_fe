@@ -41,7 +41,25 @@
             >
             </v-text-field>
           </v-col>
+          <v-col>
+            Role
+            <v-radio-group
+              v-model="role"
+              column
+              :rules="[rules.required]"
+            >
+              <v-radio
+                label="buyer"
+                value="buyer"
+              ></v-radio>
+              <v-radio
+                label="seller"
+                value="seller"
+              ></v-radio>
+            </v-radio-group>            
+          </v-col>
         </v-row>
+
         </v-card-text>
         <v-card-actions>
         <v-row>
@@ -75,6 +93,7 @@ export default {
         this.register({
           email: this.email,
           password: this.password,
+          role: this.role,
         });
         this.loading = false;
       }
@@ -84,6 +103,7 @@ export default {
     return {
       email: "",
       password: "",
+      role: "",
       valid: true,
       showPass: false,
       loading: false,

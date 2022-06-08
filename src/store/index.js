@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import user from "./user/index";
 import general from "./general/index";
 import blog from "./blog/index";
+import products from "./products/index";
 
 Vue.use(Vuex);
 
@@ -11,5 +12,6 @@ export default new Vuex.Store({
     user,
     general,
     blog,
+    products,
   },
 });
