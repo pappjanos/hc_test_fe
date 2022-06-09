@@ -62,7 +62,7 @@
 				</v-card>
 			</v-col>
 		</v-row>
-		<v-row>
+		<v-row v-if="products.length > 0">
 			<v-col
 				xs="12"
 				sm="12"
@@ -74,6 +74,11 @@
 				<ProductCard :product="product" />
 			</v-col>
 		</v-row>
+    <v-row v-else>
+			<v-col>
+				<div class="pt-10" align="center">The vending machine is empty :(</div>
+			</v-col>
+    </v-row>
 
 		<v-bottom-sheet v-model="sheet" width="100%">
 			<v-sheet class="text-center" height="200px">
