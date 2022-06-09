@@ -1,10 +1,6 @@
 {
   "localhost:8080": {
     "USER_SERVICE_URL": "http://localhost:1111/v1/auth",
-    
-    "DUMMY_SERVICE_URL": "http://localhost:1111",
-    "BLOG_SERVICE_URL": "http://localhost:1111/v1/blog",
-
     "PRODUCT_SERVICE_URL": "http://localhost:1111/v1/product",
     "DEPOSIT_SERVICE_URL": "http://localhost:1111/v1/deposit",
     "BUY_SERVICE_URL": "http://localhost:1111/v1/buy"

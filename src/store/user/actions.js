@@ -1,6 +1,4 @@
 import userService from "../../api/services/userService";
-import dummyService from "../../api/services/dummyService";
-import blogService from "../../api/services/blogService";
 import productService from "../../api/services/productService";
 import buyService from "../../api/services/buyService";
 import depositService from "../../api/services/depositService";
@@ -21,8 +19,6 @@ function setMessage(context, message, color = "red") {
 
 function setAuthtokens(token) {
   // call setAuthToken for all apis here
-  dummyService.setAuthToken(token);
-  blogService.setAuthToken(token);
   productService.setAuthToken(token);
   buyService.setAuthToken(token);
   depositService.setAuthToken(token);
@@ -30,8 +26,6 @@ function setAuthtokens(token) {
 
 function clearAuthTokens() {
   // remove auth token in case of logging out
-  dummyService.removeAuthToken();
-  blogService.removeAuthToken();
   productService.removeAuthToken();
   buyService.removeAuthToken();
   depositService.removeAuthToken();
