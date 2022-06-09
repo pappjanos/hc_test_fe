@@ -48,7 +48,7 @@ export const actions = {
       setAuthtokens(response.data.token)
 
       setMessage(context, response.data.message, "green");
-      router.push({ name: "Home" }).catch(()=>{});
+      router.push({ name: "Home" }).catch(() => { });
     } catch (error) {
       setMessage(context, error.response.data.message);
     }
@@ -72,7 +72,7 @@ export const actions = {
     try {
       const response = await userService.register(user);
       setMessage(context, response.data.message, "green");
-      router.push({ name: "Login" }).catch(()=>{});
+      router.push({ name: "Login" }).catch(() => { });
     } catch (error) {
       setMessage(context, error.response.data.message);
     }
@@ -81,6 +81,6 @@ export const actions = {
   async logout(context) {
     clearAuthTokens()
     context.commit("LOGOUT_USER");
-    router.push({ name: "Home" }).catch(()=>{});
+    router.push({ name: "Home" }).catch(() => { });
   },
 };

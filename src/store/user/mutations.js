@@ -1,7 +1,7 @@
 export const mutations = {
   SET_USER(state, to) {
     state.user = to;
-    localStorage.setItem("user",JSON.stringify(to))
+    localStorage.setItem("user", JSON.stringify(to))
   },
   LOGOUT_USER(state) {
     localStorage.removeItem("user");

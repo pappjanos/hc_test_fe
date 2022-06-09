@@ -48,7 +48,7 @@ export const actions = {
   async patchProduct(context, patch) {
     try {
       const response = await productService.patchProduct(patch.id, patch)
-      context.commit("PATCH_PRODUCT", {to: response.data.updatedProduct, id: response.data.updatedProduct.id})
+      context.commit("PATCH_PRODUCT", { to: response.data.updatedProduct, id: response.data.updatedProduct.id })
       setMessage(context, response.data.message, 'green');
     } catch (error) {
       console.log(error)

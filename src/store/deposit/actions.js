@@ -25,7 +25,7 @@ export const actions = {
   },
   async updateDeposit(context, deposit) {
     try {
-      const response = await depositService.updateDeposit({deposit});
+      const response = await depositService.updateDeposit({ deposit });
       context.commit("SET_DEPOSIT", response.data.deposit)
     } catch (error) {
       console.log(error)

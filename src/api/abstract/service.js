@@ -3,22 +3,13 @@ import store from "../../store/index";
 export default class Service {
   constructor(baseURL) {
     this.api = axios.create({ baseURL });
-    
-    // this.api.interceptors.request.use(
-    //   (config) => {
-    //     return config;
-    //   },
-    //   (error) => {
-    //     return Promise.reject(error);
-    //   }
-    // );
+
     this.api.interceptors.response.use(
       (config) => {
         return config;
       },
       (error) => {
-        if (error.response.data.msg_id === 'USR_NOT_AUTHORIZED')
-        {
+        if (error.response.data.msg_id === 'USR_NOT_AUTHORIZED') {
           store.dispatch("user/logout")
         }
         return Promise.reject(error);

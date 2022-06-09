@@ -21,7 +21,7 @@ class ProductService extends Service {
   patchProduct(productId, patch) {
     return this.api.patch("/" + productId, patch)
   }
-  
+
   deleteProduct(productId) {
     return this.api.delete("/" + productId)
   }

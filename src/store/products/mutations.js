@@ -8,7 +8,7 @@ export const mutations = {
   SET_PRODUCT(state, to) {
     state.product = to;
   },
-  PATCH_PRODUCT(state, {to, id}) {
+  PATCH_PRODUCT(state, { to, id }) {
     state.products = state.products.map(product => {
       if (product.id === id) {
         return Object.assign({}, product, to)
