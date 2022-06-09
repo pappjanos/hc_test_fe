@@ -43,6 +43,7 @@
 			...mapActions("buy", ["buyProduct"]),
 			async onBuy(id) {
 				await this.buyProduct({ id, amount: this.buyAmount });
+        this.buyAmount = 1
 			},
 		},
 		props: ["product"],
