@@ -11,34 +11,26 @@
       </h3>
     </div>
     <div v-if="user.isloggedIn">
-    <!-- here, role checking and include seller or buyer component listing-->
       <div v-if="user.roles === 'seller'">
         <ProductList />
       </div>
       <div v-else>
-        buyer list
+        <VendingMachine />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import ProductList from "@/components/ProductList";
+import VendingMachine from "@/components/VendingMachine";
 
 export default {
   name: "Home",
-  components: { ProductList },
+  components: { ProductList, VendingMachine },
   computed: {
     ...mapGetters("user", ["user"]),
   },
-  // methods: {
-  //   ...mapActions("products", ["getProductList"]),
-  // },
-  // async created() {
-  //   if (this.user.isloggedIn) {
-  //     await this.getProductList();
-  //   }
-  // },
 };
 </script>
